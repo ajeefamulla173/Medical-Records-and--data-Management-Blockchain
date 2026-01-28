@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Medical Data - Blockchain Healthcare System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="28" stroke="#2E7D8F" stroke-width="3"/>
+                        <path d="M30 15 L30 35 M20 25 L30 35 L40 25" stroke="#2E7D8F" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1>Secure Medical Data</h1>
+                <p class="subtitle">Blockchain-Powered Healthcare Management</p>
+            </div>
+            
+            <div class="security-badge">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 1 L3 4 L3 9 C3 13 6 16 10 17 C14 16 17 13 17 9 L17 4 Z" stroke="#2E7D8F" stroke-width="2" fill="#E8F4F8"/>
+                    <path d="M7 9 L9 11 L13 7" stroke="#2E7D8F" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>End-to-End Encrypted • Immutable Records • Patient-Controlled Access</span>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="role-select">Who are you?</label>
+                    <select id="role-select" class="form-control" required>
+                        <option value="">Select your role</option>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="unique-id">Unique ID / Email</label>
+                    <input type="text" id="unique-id" class="form-control" placeholder="Enter your unique ID or email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Secure Login</button>
+            </form>
+
+            <div class="privacy-notice">
+                <p>🔒 Your data is protected using blockchain technology. All medical records are immutable and encrypted.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Dashboard -->
+    <div id="patient-dashboard" class="screen dashboard">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h2>Patient Dashboard</h2>
+                <div class="user-info">
+                    <span id="patient-name-display"></span>
+                    <button id="logout-btn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="dashboard-sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-btn active" data-section="records">📋 My Records</button>
+                    <button class="nav-btn" data-section="upload">📤 Upload Data</button>
+                    <button class="nav-btn" data-section="consent">🔐 Access Control</button>
+                    <button class="nav-btn" data-section="blockchain">⛓️ Blockchain View</button>
+                </nav>
+            </div>
+
+            <div class="dashboard-main">
+                <!-- Medical Records Section -->
+                <section id="records-section" class="content-section active">
+                    <h3>My Medical Records</h3>
+                    <div id="records-list" class="records-list"></div>
+                </section>
+
+                <!-- Upload Section -->
+                <section id="upload-section" class="content-section">
+                    <h3>Upload Medical Information</h3>
+                    <div class="upload-container">
+                        <div class="upload-card">
+                            <h4>Text-Based Medical Data</h4>
+                            <form id="text-upload-form">
+                                <div class="form-group">
+                                    <label for="record-type">Record Type</label>
+                                    <select id="record-type" class="form-control" required>
+                                        <option value="diagnosis">Diagnosis</option>
+                                        <option value="report">Lab Report</option>
+                                        <option value="prescription">Prescription</option>
+                                        <option value="note">Medical Note</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="record-title">Title</label>
+                                    <input type="text" id="record-title" class="form-control" placeholder="e.g., Annual Checkup 2024" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="record-content">Content</label>
+                                    <textarea id="record-content" class="form-control" rows="6" placeholder="Enter medical information..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add to Blockchain</button>
+                            </form>
+                        </div>
+
+                        <div class="upload-card">
+                            <h4>Medical Images</h4>
+                            <form id="image-upload-form">
+                                <div class="form-group">
+                                    <label for="image-type">Image Type</label>
+                                    <select id="image-type" class="form-control" required>
+                                        <option value="scan">Scan (X-Ray, MRI, CT)</option>
+                                        <option value="test">Test Report Image</option>
+                                        <option value="document">Medical Document</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image-title">Title</label>
+                                    <input type="text" id="image-title" class="form-control" placeholder="e.g., Chest X-Ray" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image-file">Select Image</label>
+                                    <input type="file" id="image-file" class="form-control" accept="image/*" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Upload to Blockchain</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Consent Management Section -->
+                <section id="consent-section" class="content-section">
+                    <h3>Access Control & Consent</h3>
+                    <div class="consent-container">
+                        <div class="consent-card">
+                            <h4>Grant Access</h4>
+                            <form id="consent-form">
+                                <div class="form-group">
+                                    <label for="grant-to">Grant Access To</label>
+                                    <select id="grant-to" class="form-control" required>
+                                        <option value="doctor">Doctor</option>
+                                        <option value="nurse">Nurse</option>
+                                        <option value="other">Other Healthcare Provider</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="provider-id">Provider ID / Email</label>
+                                    <input type="text" id="provider-id" class="form-control" placeholder="Enter provider identifier" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="access-level">Access Level</label>
+                                    <select id="access-level" class="form-control" required>
+                                        <option value="view">View Only</option>
+                                        <option value="update">View & Update</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Grant Access</button>
+                            </form>
+                        </div>
+                        <div class="consent-card">
+                            <h4>Current Access Permissions</h4>
+                            <div id="access-list" class="access-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Blockchain View Section -->
+                <section id="blockchain-section" class="content-section">
+                    <h3>Blockchain Visualization</h3>
+                    <div class="blockchain-info">
+                        <p>Your medical records are stored as immutable blocks in a blockchain. Each block contains a hash, timestamp, and reference to the previous block.</p>
+                    </div>
+                    <div id="blockchain-view" class="blockchain-view"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor Dashboard -->
+    <div id="doctor-dashboard" class="screen dashboard">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h2>Doctor Dashboard</h2>
+                <div class="user-info">
+                    <span id="doctor-name-display"></span>
+                    <button id="doctor-logout-btn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="dashboard-sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-btn active" data-section="patients">👥 Patients</button>
+                    <button class="nav-btn" data-section="records-doc">📋 Medical Records</button>
+                    <button class="nav-btn" data-section="blockchain-doc">⛓️ Blockchain View</button>
+                </nav>
+            </div>
+
+            <div class="dashboard-main">
+                <!-- Patients Section -->
+                <section id="patients-section" class="content-section active">
+                    <h3>Authorized Patients</h3>
+                    <div id="patients-list" class="patients-list"></div>
+                </section>
+
+                <!-- Records Section -->
+                <section id="records-doc-section" class="content-section">
+                    <h3>Patient Medical Records</h3>
+                    <div id="selected-patient-info" class="patient-info-card"></div>
+                    <div id="patient-records-list" class="records-list"></div>
+                </section>
+
+                <!-- Blockchain View Section -->
+                <section id="blockchain-doc-section" class="content-section">
+                    <h3>Blockchain Visualization</h3>
+                    <div class="blockchain-info">
+                        <p>Medical records are stored as immutable blocks. Select a patient to view their blockchain.</p>
+                    </div>
+                    <div id="blockchain-view-doc" class="blockchain-view"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Roles Dashboard -->
+    <div id="other-dashboard" class="screen dashboard">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h2>Healthcare Dashboard</h2>
+                <div class="user-info">
+                    <span id="other-name-display"></span>
+                    <button id="other-logout-btn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="dashboard-sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-btn active" data-section="view-only">📋 View Records</button>
+                    <button class="nav-btn" data-section="blockchain-other">⛓️ Blockchain View</button>
+                </nav>
+            </div>
+
+            <div class="dashboard-main">
+                <section id="view-only-section" class="content-section active">
+                    <h3>Authorized Medical Records</h3>
+                    <div class="info-message">
+                        <p>You have view-only access to authorized patient records.</p>
+                    </div>
+                    <div id="view-only-records" class="records-list"></div>
+                </section>
+
+                <section id="blockchain-other-section" class="content-section">
+                    <h3>Blockchain Visualization</h3>
+                    <div class="blockchain-info">
+                        <p>View-only access to blockchain records.</p>
+                    </div>
+                    <div id="blockchain-view-other" class="blockchain-view"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
